@@ -20,11 +20,10 @@ export interface Message {
   isMine?: boolean,
 }
 
-// export interface DailyMessages {
-//   [date: string]: {
-//     messages: Message[];
-//   };
-// }
+export interface DailyMessages {
+  date: string,
+  messages: Message[],
+}
 
 
 export interface LastMessageResponse {

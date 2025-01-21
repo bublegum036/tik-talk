@@ -1,7 +1,7 @@
 <div class="messages-wrapper">
-  @for (message of messages(); track message.id) {
+  @for (dailyMessage of dailyMessages(); track dailyMessage.date) {
     <app-chat-workspace-message
-      [message]="message"
+      [dailyMessage]="dailyMessage"
     ></app-chat-workspace-message>
   }
 </div>

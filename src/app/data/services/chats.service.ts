@@ -14,6 +14,7 @@ export class ChatsService {
 
   activeChatMessages = signal<Message[]>([]);
 
+
   baseApiUrl = 'https://icherniakov.ru/yt-course/'
   chatsUrl = `${this.baseApiUrl}chat/`
   messageUrl = `${this.baseApiUrl}message/`
@@ -38,20 +39,7 @@ export class ChatsService {
               }
             })
 
-            this.activeChatMessages.set(patchedMessages);
-
-
-            // const gropedMessagesByDate = patchedMessages.reduce((acc: Record<string, { messages: Message[]; }>, message) => {
-            //   const date: string = message.createdAt.slice(0, 10);
-            //   return {
-            //     ...acc,
-            //     [date]: {
-            //       messages: [...(acc[date]?.messages || []), message]
-            //     }
-            //   }
-            // }, {});
-            //
-            // this.activeChatMessages.next(gropedMessagesByDate);
+          this.activeChatMessages.set(patchedMessages);
 
             return {
               ...chat,
