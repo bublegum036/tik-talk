@@ -8,6 +8,14 @@ export interface Chat {
   companion: Profile,
 }
 
+export interface ChatGroupedMessage {
+  id: number,
+  userFirst: Profile,
+  userSecond: Profile,
+  messages: DailyMessages[],
+  companion: Profile,
+}
+
 export interface Message {
   id: number,
   userFromId: number,
