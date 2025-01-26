@@ -4,6 +4,8 @@ import {MessageInputComponent} from "../../../../common-ui/message-input/message
 import {ChatsService} from "../../../../data/services/chats.service";
 import {Chat, DailyMessages, Message} from "../../../../data/interfaces/chats.interface";
 import {firstValueFrom} from "rxjs";
+import {DatePipe} from "@angular/common";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-chat-workspace-messages-wrapper',
@@ -11,6 +13,7 @@ import {firstValueFrom} from "rxjs";
   imports: [
     ChatWorkspaceMessageComponent,
     MessageInputComponent,
+    DatePipe,
   ],
   templateUrl: './chat-workspace-messages-wrapper.component.html',
   styleUrl: './chat-workspace-messages-wrapper.component.scss'
@@ -22,11 +25,17 @@ export class ChatWorkspaceMessagesWrapperComponent implements OnInit {
 
   dailyMessages = signal<DailyMessages[]>([]);
 
+  router: ActivatedRoute = inject(ActivatedRoute);
+
 
   ngOnInit() {
-    const messages = this.chat().messages
-    const sortedMessages: DailyMessages[] = this.sortedMessagesByDays(messages);
-    this.dailyMessages.set(sortedMessages);
+    this.router.params.subscribe(params => {
+      if (params) {
+        this.chatService.getChatById(params['id']).subscribe(chat => {
+          this.dailyMessages.set(this.sortedMessagesByDays(chat.messages))
+        })
+      }
+    })
   }
 
   async onSendMessage(messageText: string) {

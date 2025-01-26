@@ -1,5 +1,4 @@
 @if (dailyMessage(); as messages) {
-    <div class="message-day"> {{ messages.date | date: 'dd-MM-yyyy' }} </div>
     @for (message of messages.messages; track message.id) {
         <div [ngClass]="{'is-mine': message.isMine, 'message-container': !message.isMine}">
             <app-avatar-circle

@@ -3,12 +3,6 @@
   //grid-template-columns: 32px 1fr;
   grid-gap: 12px;
 
-  .message-day {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-  }
-
   .message-container {
     order: 0;
   }

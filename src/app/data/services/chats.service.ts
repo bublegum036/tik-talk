@@ -11,7 +11,6 @@ import {map, Observable} from "rxjs";
 export class ChatsService {
   http = inject(HttpClient);
   me = inject(ProfileService).me;
-
   activeChatMessages = signal<Message[]>([]);
 
 
