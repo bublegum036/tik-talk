@@ -27,17 +27,8 @@ export class ChatWorkspaceMessagesWrapperComponent implements OnInit {
 
     router: ActivatedRoute = inject(ActivatedRoute);
 
-
     ngOnInit() {
-        this.router.params.subscribe(params => {
-            if (Number(params['id']) !== this.chat().id) {
-                this.chatService.getChatById(params['id'])
-                    .subscribe(chat => {
-                        this.dailyMessages.set(this.chat().messages)
-                    })
-            }
-        })
-
+        this.dailyMessages.set(this.chat().messages)
     }
 
     async onSendMessage(messageText: string) {
