@@ -1,0 +1,64 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <label class="tt-form-label">
+    <span class="tt-form-label__text">Культура</span>
+    <select class="tt-form-input" type="" formControlName="cultureType">
+      <option
+        class="medium-text"
+        [value]="culture.Empty"
+        [disabled]="true"
+        [selected]="true"
+      >
+        Выберите культуру
+      </option>
+      <option class="medium-text" [value]="culture.SunFlower">
+        Подсолнечник
+      </option>
+      <option class="medium-text" [value]="culture.SoyDean">Соя</option>
+      <option class="medium-text" [value]="culture.Rape">Рапс</option>
+    </select>
+  </label>
+  <label class="tt-form-label">
+    <span class="tt-form-label__text">Контрагент</span>
+    <input class="tt-form-input" formControlName="counterparty" />
+  </label>
+  <button class="btn" (click)="addAuto()">Добавить авто</button>
+  @for (autoGroup of form.controls.infoAuto.controls; track autoGroup) {
+  <div [formGroup]="autoGroup">
+    <span class="mb60 medium-text">Данные по транспорту</span>
+    <label class="tt-form-label">
+      <span class="tt-form-label__text">ФИО водителя</span>
+      <input class="tt-form-input" formControlName="driverName" />
+    </label>
+    <label class="tt-form-label">
+      <span class="tt-form-label__text">Номер авто</span>
+      <input class="tt-form-input" formControlName="autoNumber" />
+    </label>
+    <label class="tt-form-label">
+      <span class="tt-form-label__text">Номер прицепа</span>
+      <input class="tt-form-input" formControlName="trailerNumber" />
+    </label>
+    <label class="tt-form-label">
+      <span class="tt-form-label__text">Вес брутто</span>
+      <input class="tt-form-input" formControlName="weightGross" />
+    </label>
+    <label class="tt-form-label">
+      <span class="tt-form-label__text">Вес нетто</span>
+      <input class="tt-form-input" formControlName="weightNet" />
+    </label>
+    <label class="tt-form-label">
+      <span class="tt-form-label__text">Вес культуры</span>
+      <input class="tt-form-input" formControlName="weightCulture" />
+    </label>
+    <label class="tt-form-label">
+      <span class="tt-form-label__text">Скидка</span>
+      <input class="tt-form-input" formControlName="discount" />
+    </label>
+    <label class="tt-form-label">
+      <span class="tt-form-label__text">Зачетный вес</span>
+      <input class="tt-form-input" formControlName="weightAccepted" />
+    </label>
+  </div>
+  }
+
+  <button class="btn" type="submit">Отправить</button>
+</form>
