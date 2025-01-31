@@ -22,20 +22,17 @@ export class ChatWorkspaceMessagesWrapperComponent implements OnInit {
     chatService = inject(ChatsService)
 
     chat = input.required<ChatGroupedMessage>()
-
     dailyMessages = signal<DailyMessages[]>([]);
 
     router: ActivatedRoute = inject(ActivatedRoute);
 
     ngOnInit() {
         this.dailyMessages.set(this.chat().messages)
-    }
+    };
 
     async onSendMessage(messageText: string) {
         await firstValueFrom(this.chatService.sendMessage(this.chat().id, messageText))
         const chat = await firstValueFrom(this.chatService.getChatById(this.chat().id))
         this.dailyMessages.set(chat.messages);
-    }
-
-
+    };
 }

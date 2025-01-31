@@ -6,6 +6,7 @@ import {LayoutComponent} from './common-ui/layout/layout.component';
 import {canActivateAuth} from "./auth/access.guard";
 import {SettingsPageComponent} from "./pages/settings-page/settings-page.component";
 import {chatsRoutes} from "./pages/chats-page/chatsRoutes";
+import {ExperimentFormComponent} from "./pages/experiment-form/experiment-form.component";
 
 export const routes: Routes = [
   {
@@ -14,6 +15,7 @@ export const routes: Routes = [
       {path: 'profile/:id', component: ProfilePageComponent},
       {path: 'search', component: SearchPageComponent},
       {path: 'settings', component: SettingsPageComponent},
+      {path: 'experiment', component: ExperimentFormComponent},
       {
         path: 'chats',
         loadChildren: () => chatsRoutes

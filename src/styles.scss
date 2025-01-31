@@ -149,6 +149,11 @@ body {
   &:focus-visible {
     outline: 1px solid var(--primary-color);
   }
+
+  &:disabled {
+    color: var(--light-color);
+  }
+
 }
 
 .tt-textarea {
