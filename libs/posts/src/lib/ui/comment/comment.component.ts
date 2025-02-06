@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { AvatarCircleComponent } from '@tt/common-ui';
-import { PostComment } from '../../../../../shared/src/lib/data/interfaces/post.interface';
 import { DatePipe } from '@angular/common';
+import { PostComment } from '../../../../../shared/src/lib';
 
 @Component({
   selector: 'app-comment',

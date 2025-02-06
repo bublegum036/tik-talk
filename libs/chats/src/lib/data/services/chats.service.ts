@@ -2,15 +2,15 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { map, Observable } from 'rxjs';
-import { ProfileService } from '@tt/profile';
-import { Chat, ChatGroupedMessage, DailyMessages, LastMessageResponse, Message } from '../interfaces/chats.interface';
+import { GlobalStoreService } from '../../../../../shared/src/lib';
+import { Chat, ChatGroupedMessage, DailyMessages, LastMessageResponse, Message } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatsService {
   http = inject(HttpClient);
-  me = inject(ProfileService).me;
+  me = inject(GlobalStoreService).me;
   activeChatMessages = signal<DailyMessages[]>([]);
 
   baseApiUrl = 'https://icherniakov.ru/yt-course/';

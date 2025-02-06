@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ProfileService } from '@tt/profile';
+import { ProfileService } from '../../data/index';
 import { ProfileCardComponent } from '../../ui/profile-card/profile-card.component';
 import { ProfileFiltersComponent } from '../profile-filters/profile-filters.component';
 import { AsyncPipe } from '@angular/common';

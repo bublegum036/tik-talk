@@ -1,4 +1,4 @@
-import { ProfileService } from "./services/profile.service";
+import { ProfileService } from './services';
 
 export {
   ProfileService

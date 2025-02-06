@@ -1,12 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  PostComment,
-  CommentCreateDto,
-  Post,
-  PostCreateDto,
-} from '../../../../../shared/src';
+
 import { map, switchMap, tap } from 'rxjs';
+import { CommentCreateDto, Post, PostComment, PostCreateDto } from '../../../../../shared/src/lib';
 
 @Injectable({
   providedIn: 'root',

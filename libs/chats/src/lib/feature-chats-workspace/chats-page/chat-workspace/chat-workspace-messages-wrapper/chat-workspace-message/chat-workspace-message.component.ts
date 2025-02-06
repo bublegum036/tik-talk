@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { DailyMessages } from '../../../../../data/interfaces/chats.interface';
-import { AvatarCircleComponent } from '../../../../../../../../common-ui/src/lib/components/avatar-circle/avatar-circle.component';
+import { AvatarCircleComponent } from '@tt/common-ui';
 import { DatePipe, NgClass } from '@angular/common';
 
 @Component({

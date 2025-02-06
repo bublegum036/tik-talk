@@ -11,8 +11,7 @@ import { PostInputComponent } from '../../ui';
 import { PostComponent } from '../index';
 import { PostService } from '../../data';
 import { debounceTime, firstValueFrom, fromEvent, tap } from 'rxjs';
-import { ProfileService } from '@tt/profile';
-import { Post } from '../../../../../shared/src/lib/data/interfaces/post.interface';
+import { GlobalStoreService, Post } from '../../../../../shared/src/lib';
 
 @Component({
   selector: 'app-post-feed',
@@ -25,7 +24,7 @@ export class PostFeedComponent implements AfterViewInit {
   private postService = inject(PostService);
   public feed = this.postService.posts;
   public isCommentInput = input(false);
-  public profile = inject(ProfileService).me;
+  public profile = inject(GlobalStoreService).me;
   public post = input<Post>();
 
   @HostListener('window:resize')

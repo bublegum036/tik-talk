@@ -8,9 +8,9 @@ import {
   Renderer2,
 } from '@angular/core';
 import { AvatarCircleComponent } from '@tt/common-ui';
-import { ProfileService } from '@tt/profile';
 import { SvgIconComponent } from '@tt/common-ui';
 import { FormsModule } from '@angular/forms';
+import { GlobalStoreService } from '../../../../../shared/src/lib';
 
 @Component({
   selector: 'app-post-input',
@@ -21,10 +21,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class PostInputComponent {
   r2 = inject(Renderer2);
+  #globalStoreService = inject(GlobalStoreService);
 
   public postId = input<number>(0);
   public isCommentInput = input(false);
-  public profile = inject(ProfileService).me;
+  public profile = inject(GlobalStoreService).me;
 
   @Output() created: EventEmitter<string> = new EventEmitter();
 

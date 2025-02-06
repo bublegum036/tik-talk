@@ -1,5 +1,4 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
-import { Post, PostComment } from '../../../../../shared/src/lib/data/interfaces/post.interface';
 import { AvatarCircleComponent } from '@tt/common-ui';
 import { SvgIconComponent } from '@tt/common-ui';
 import { PostInputComponent } from '../../ui';
@@ -7,7 +6,7 @@ import { CommentComponent } from '../../ui';
 import { PostService } from '../../data';
 import { firstValueFrom } from 'rxjs';
 import { DateClockPipe } from '@tt/common-ui';
-import { ProfileService } from '@tt/profile';
+import { GlobalStoreService, Post, PostComment } from '../../../../../shared/src/lib';
 
 @Component({
   selector: 'app-post',
@@ -25,7 +24,7 @@ import { ProfileService } from '@tt/profile';
 export class PostComponent implements OnInit {
   public post = input<Post>();
   public comments = signal<PostComment[]>([]);
-  public profile = inject(ProfileService).me;
+  public profile = inject(GlobalStoreService).me;
 
   postService = inject(PostService);
 

@@ -8,7 +8,7 @@ import {
 import { AvatarCircleComponent } from '../../../../../common-ui/src/lib/components/avatar-circle/avatar-circle.component';
 import { FormsModule } from '@angular/forms';
 import { SvgIconComponent } from '../../../../../common-ui/src/lib/components/svg-icon/svg-icon.component';
-import { ProfileService } from '../../../../../profile/src/lib/data/services/profile.service';
+import { GlobalStoreService } from '../../../../../shared/src/lib';
 
 @Component({
   selector: 'app-message-input',
@@ -19,7 +19,7 @@ import { ProfileService } from '../../../../../profile/src/lib/data/services/pro
 })
 export class MessageInputComponent {
   r2 = inject(Renderer2);
-  me = inject(ProfileService).me;
+  me = inject(GlobalStoreService).me;
 
   @Output() created: EventEmitter<string> = new EventEmitter<string>();
 

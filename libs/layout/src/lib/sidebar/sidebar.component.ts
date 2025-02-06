@@ -1,11 +1,11 @@
-import { Component, inject } from '@angular/core';
-import { SvgIconComponent } from '../../../../../../libs/common-ui/src/lib/components/svg-icon/svg-icon.component';
-import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
+import { Component, inject, OnInit } from '@angular/core';
+import { SvgIconComponent } from '@tt/common-ui';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { ProfileService } from '../../../../../../libs/profile/src/lib/data/services/profile.service';
-import { AsyncPipe, JsonPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { firstValueFrom } from 'rxjs';
-import { ImgUrlPipe } from '../../../../../../libs/common-ui/src/lib/pipes/img-url.pipe';
+import { ImgUrlPipe } from '@tt/common-ui';
+import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
+import { ProfileService } from '../../../../profile/src';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,14 +16,13 @@ import { ImgUrlPipe } from '../../../../../../libs/common-ui/src/lib/pipes/img-u
     SubscriberCardComponent,
     RouterLink,
     AsyncPipe,
-    JsonPipe,
     ImgUrlPipe,
     RouterLinkActive,
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
   profileService = inject(ProfileService);
 
   subscribers$ = this.profileService.getSubscribersShortList();
