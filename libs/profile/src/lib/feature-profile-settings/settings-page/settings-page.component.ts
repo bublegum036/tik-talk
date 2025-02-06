@@ -1,4 +1,4 @@
-import { Component, effect, inject, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, effect, inject, ViewChild } from '@angular/core';
 import { ProfileHeaderComponent } from '../../ui/profile-header/profile-header.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProfileService } from '../../data/services/profile.service';
@@ -12,7 +12,7 @@ import { AvatarUploadComponent } from '../../ui/avatar-upload/avatar-upload.comp
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
 })
-export class SettingsPageComponent {
+export class SettingsPageComponent implements AfterViewInit{
   fb = inject(FormBuilder);
   profileService = inject(ProfileService);
 
@@ -38,6 +38,7 @@ export class SettingsPageComponent {
   }
 
   ngAfterViewInit() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     this.avatarUploader.avatar;
   }
 

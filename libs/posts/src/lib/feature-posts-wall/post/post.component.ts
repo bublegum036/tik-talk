@@ -6,7 +6,7 @@ import { CommentComponent } from '../../ui';
 import { PostService } from '../../data';
 import { firstValueFrom } from 'rxjs';
 import { DateClockPipe } from '@tt/common-ui';
-import { GlobalStoreService, Post, PostComment } from '../../../../../shared/src/lib';
+import { GlobalStoreService, Post, PostComment } from '@tt/shared';
 
 @Component({
   selector: 'app-post',

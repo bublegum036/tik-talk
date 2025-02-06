@@ -8,7 +8,7 @@ import { SvgIconComponent } from '@tt/common-ui';
 import { ImgUrlPipe } from '@tt/common-ui';
 import { GlobalStoreService } from '@tt/shared';
 import { PostFeedComponent } from '@tt/posts';
-import { ProfileService } from '../../data/index';
+import { ProfileService } from '../../data';
 
 @Component({
   selector: 'app-profile-page',

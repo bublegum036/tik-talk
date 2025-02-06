@@ -8,10 +8,10 @@ import {
   Renderer2,
 } from '@angular/core';
 import { PostInputComponent } from '../../ui';
-import { PostComponent } from '../index';
-import { PostService } from '../../data';
 import { debounceTime, firstValueFrom, fromEvent, tap } from 'rxjs';
-import { GlobalStoreService, Post } from '../../../../../shared/src/lib';
+import { PostComponent } from '../post/';
+import { PostService } from '../../data';
+import { GlobalStoreService, Post } from '@tt/shared';
 
 @Component({
   selector: 'app-post-feed',

@@ -7,5 +7,5 @@ export {
   canActivateAuth,
   authTokenInterceptor,
   AuthService,
-  LoginPageComponent
+  LoginPageComponent,
 }
