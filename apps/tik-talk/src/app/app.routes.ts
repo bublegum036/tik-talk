@@ -9,14 +9,27 @@ import { ExperimentFormComponent } from '@tt/experiments';
 import { canActivateAuth } from '@tt/auth';
 import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
+import { postsFeature } from '@tt/posts';
+import { PostEffect } from '@tt/posts';
 
 export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', redirectTo: 'profile/me', pathMatch: 'full' },
-      { path: 'profile/:id', component: ProfilePageComponent },
+      {
+        path: '',
+        redirectTo: 'profile/me',
+        pathMatch: 'full',
+      },
+      {
+        path: 'profile/:id',
+        component: ProfilePageComponent,
+        providers: [
+          provideState(postsFeature),
+          provideEffects(PostEffect),
+        ]
+      },
       {
         path: 'search',
         component: SearchPageComponent,

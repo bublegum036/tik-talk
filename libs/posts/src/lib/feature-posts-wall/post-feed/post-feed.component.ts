@@ -4,28 +4,30 @@ import {
   ElementRef,
   HostListener,
   inject,
-  input,
+  input, OnInit,
   Renderer2,
 } from '@angular/core';
 import { PostInputComponent } from '../../ui';
-import { debounceTime, firstValueFrom, fromEvent, tap } from 'rxjs';
+import { debounceTime, fromEvent, tap } from 'rxjs';
 import { PostComponent } from '../post/';
-import { PostService } from '../../data';
-import { GlobalStoreService, Post } from '@tt/shared';
+import { postsActions, PostService, selectGetPosts } from '../../data';
+import { GlobalStoreService } from '@tt/shared';
+import { Store } from '@ngrx/store';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-post-feed',
   standalone: true,
-  imports: [PostInputComponent, PostComponent],
+  imports: [PostInputComponent, PostComponent, AsyncPipe],
   templateUrl: './post-feed.component.html',
-  styleUrl: './post-feed.component.scss',
+  styleUrl: './post-feed.component.scss'
 })
-export class PostFeedComponent implements AfterViewInit {
+export class PostFeedComponent implements OnInit, AfterViewInit {
   private postService = inject(PostService);
-  public feed = this.postService.posts;
+  store = inject(Store);
+  public feed = this.store.selectSignal(selectGetPosts);
   public isCommentInput = input(false);
   public profile = inject(GlobalStoreService).me;
-  public post = input<Post>();
 
   @HostListener('window:resize')
   onWindowResize() {
@@ -35,8 +37,8 @@ export class PostFeedComponent implements AfterViewInit {
   hostElement = inject(ElementRef);
   r2 = inject(Renderer2);
 
-  constructor() {
-    firstValueFrom(this.postService.fetchPosts());
+  ngOnInit() {
+    this.store.dispatch(postsActions.getPosts({ posts: [] }))
   }
 
   ngAfterViewInit() {
@@ -57,12 +59,12 @@ export class PostFeedComponent implements AfterViewInit {
   onCreatePost(postText: string) {
     if (!postText) return;
 
-    firstValueFrom(
       this.postService.createPost({
         title: 'Клевый пост',
         content: postText,
         authorId: this.profile()!.id,
+      }).subscribe(() => {
+        this.store.dispatch(postsActions.getPosts({ posts: [] }))
       })
-    ).then(() => {});
   }
 }
