@@ -4,9 +4,10 @@ import { SvgIconComponent } from '@tt/common-ui';
 import { PostInputComponent } from '../../ui';
 import { CommentComponent } from '../../ui';
 import { PostService } from '../../data';
-import { firstValueFrom } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 import { DateClockPipe } from '@tt/common-ui';
 import { GlobalStoreService, Post, PostComment } from '@tt/shared';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-post',
@@ -28,23 +29,18 @@ export class PostComponent implements OnInit {
 
   postService = inject(PostService);
 
-  async ngOnInit() {
+  ngOnInit() {
     this.comments.set(this.post()!.comments);
   }
 
-  async onCreated(commentText: string) {
-    firstValueFrom(
+  onCreated(commentText: string) {
       this.postService.createComment({
         text: commentText,
         authorId: this.profile()!.id,
         postId: this.post()!.id,
-      })
-    ).then(async () => {
-      const comments = await firstValueFrom(
-        this.postService.getCommentsByPostId(this.post()!.id)
-      );
-      this.comments.set(comments);
-    });
+      }).pipe(
+        switchMap(post => this.postService.getCommentsByPostId(post.postId)),
+      ).subscribe(comments => this.comments.set(comments))
     return;
   }
 }
