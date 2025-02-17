@@ -1,28 +1,35 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, startWith } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
-import { profileActions } from '@tt/profile';
+import { profileActions } from '../../data';
+import { SearchFormType } from '@tt/shared';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { selectSearchForm } from '../../data/store/selectors';
 
 @Component({
   selector: 'app-profile-filters',
   standalone: true,
-  imports: [ FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './profile-filters.component.html',
-  styleUrl: './profile-filters.component.scss',
+  styleUrl: './profile-filters.component.scss'
 })
 export class ProfileFiltersComponent {
   fb = inject(FormBuilder);
   store = inject(Store);
+  saveSearchForm = this.store.select(selectSearchForm);
 
-  searchForm = this.fb.group({
-    firstName: [''],
-    lastName: [''],
-    stack: [''],
+  searchForm: FormGroup<SearchFormType> = this.fb.group<SearchFormType>({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    stack: new FormControl('')
   });
 
   constructor() {
+    this.saveSearchForm.subscribe(storeForm => {
+      console.log(storeForm);
+    })
+
     this.searchForm.valueChanges
       .pipe(
         startWith({}),
@@ -30,7 +37,7 @@ export class ProfileFiltersComponent {
         takeUntilDestroyed()
       )
       .subscribe(formValue => {
-        this.store.dispatch(profileActions.filterEvents({filters: formValue}))
+        this.store.dispatch(profileActions.filterEvents({ filters: formValue }));
       });
   }
 }
