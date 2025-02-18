@@ -2,20 +2,53 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { map, Observable } from 'rxjs';
-import { GlobalStoreService } from '../../../../../shared/src/lib';
-import { Chat, ChatGroupedMessage, DailyMessages, LastMessageResponse, Message } from '../interfaces';
+import { GlobalStoreService } from '@tt/shared';
+import { Chat, ChatGroupedMessage, ChatWsService, DailyMessages, LastMessageResponse, Message } from '../interfaces';
+import { AuthService } from '@tt/auth';
+import { ChatWsNativeService } from './';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ChatsService {
   http = inject(HttpClient);
+  #auth = inject(AuthService);
   me = inject(GlobalStoreService).me;
-  activeChatMessages = signal<DailyMessages[]>([]);
+  activeChatMessages = signal<Message[]>([]);
+  dailyMessages = signal<DailyMessages[]>([]);
+
+  wsAdapter: ChatWsService = new ChatWsNativeService();
 
   baseApiUrl = 'https://icherniakov.ru/yt-course/';
   chatsUrl = `${this.baseApiUrl}chat/`;
   messageUrl = `${this.baseApiUrl}message/`;
+
+  connectWebSocket() {
+    this.wsAdapter.connect({
+      url: `${this.baseApiUrl}chat/ws`,
+      token: this.#auth.token ?? '',
+      handleMessage: this.handleWsMessage
+    });
+  }
+
+  handleWsMessage = (message: any) => {
+    console.log(message);
+    if (message.action === 'message') {
+      this.activeChatMessages.set([
+        ...this.activeChatMessages(),
+        {
+          id: message.data.id,
+          userFromId: message.data.author,
+          personalChatId: message.data.chat_id,
+          text: message.data.message,
+          createdAt: message.data.created_at,
+          isRead: false,
+          isMine: false
+        }
+      ]);
+      this.dailyMessages.set(this.sortedMessagesByDays(this.activeChatMessages()));
+    }
+  };
 
   createChat(userId: number) {
     return this.http.post<Chat>(`${this.chatsUrl}${userId}`, {});
@@ -27,9 +60,9 @@ export class ChatsService {
     );
   }
 
-  getChatById(chatId: number) {
+  getChatById(chatId: number): Observable<ChatGroupedMessage> {
     return this.http.get<Chat>(`${this.chatsUrl}${chatId}`).pipe(
-      map((chat) => {
+      map((chat: Chat): ChatGroupedMessage => {
         const patchedMessages = chat.messages.map((message: Message) => {
           return {
             ...message,
@@ -37,37 +70,38 @@ export class ChatsService {
               chat.userFirst.id === message.userFromId
                 ? chat.userFirst
                 : chat.userSecond,
-            isMine: message.userFromId === this.me()!.id,
+            isMine: message.userFromId === this.me()!.id
           };
         });
 
-        const sortMessages = this.sortedMessagesByDays(patchedMessages);
-        this.activeChatMessages.set(sortMessages);
+        this.activeChatMessages.set(patchedMessages);
 
-        const groupedChat: ChatGroupedMessage = {
+        const sortMessages = this.sortedMessagesByDays(this.activeChatMessages());
+        this.dailyMessages.set(sortMessages);
+
+        return {
           ...chat,
           companion:
             chat.userFirst.id === this.me()!.id
               ? chat.userSecond
               : chat.userFirst,
-          messages: sortMessages,
+          messages: sortMessages
         };
-        return groupedChat;
       })
     );
   }
 
-  sendMessage(chatId: number, message: string): Observable<Message> {
-    return this.http.post<Message>(
-      `${this.messageUrl}send/${chatId}`,
-      {},
-      {
-        params: {
-          message,
-        },
-      }
-    );
-  }
+  // sendMessage(chatId: number, message: string): Observable<Message> {
+  //   return this.http.post<Message>(
+  //     `${this.messageUrl}send/${chatId}`,
+  //     {},
+  //     {
+  //       params: {
+  //         message
+  //       }
+  //     }
+  //   );
+  // }
 
   private sortedMessagesByDays(messages: Message[]): DailyMessages[] {
     return messages.reduce(
@@ -82,7 +116,7 @@ export class ChatsService {
         }
         acc.push({
           date: msgDate,
-          messages: [message],
+          messages: [message]
         });
 
         return acc;
