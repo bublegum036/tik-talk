@@ -3,9 +3,18 @@ import { HttpClient } from '@angular/common/http';
 
 import { map, Observable } from 'rxjs';
 import { GlobalStoreService } from '@tt/shared';
-import { Chat, ChatGroupedMessage, ChatWsService, DailyMessages, LastMessageResponse, Message } from '../interfaces';
+import {
+  Chat,
+  ChatGroupedMessage,
+  ChatWsMessage,
+  ChatWsService,
+  DailyMessages, isUnreadMessage,
+  LastMessageResponse,
+  Message
+} from '../interfaces';
 import { AuthService } from '@tt/auth';
-import { ChatWsNativeService } from './';
+import { ChatWsNativeService, ChatWsRxJsService } from './';
+import { isNewMessage } from '../interfaces/type-guards';
 
 @Injectable({
   providedIn: 'root'
@@ -17,23 +26,29 @@ export class ChatsService {
   activeChatMessages = signal<Message[]>([]);
   dailyMessages = signal<DailyMessages[]>([]);
 
-  wsAdapter: ChatWsService = new ChatWsNativeService();
+  wsAdapter: ChatWsService = new ChatWsRxJsService();
 
   baseApiUrl = 'https://icherniakov.ru/yt-course/';
   chatsUrl = `${this.baseApiUrl}chat/`;
   messageUrl = `${this.baseApiUrl}message/`;
 
   connectWebSocket() {
-    this.wsAdapter.connect({
+    return this.wsAdapter.connect({
       url: `${this.baseApiUrl}chat/ws`,
       token: this.#auth.token ?? '',
       handleMessage: this.handleWsMessage
-    });
+    }) as Observable<ChatWsMessage>;
   }
 
-  handleWsMessage = (message: any) => {
+  handleWsMessage = (message: ChatWsMessage) => {
     console.log(message);
-    if (message.action === 'message') {
+    if (!('action' in message)) return;
+
+    if(isUnreadMessage(message)) {
+    //TODO проверка непрочитанных сообщений скорее всего на главной странице
+    }
+
+    if(isNewMessage(message)) {
       this.activeChatMessages.set([
         ...this.activeChatMessages(),
         {
