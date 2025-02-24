@@ -8,7 +8,7 @@ import {
   ChatGroupedMessage,
   ChatWsMessage,
   ChatWsService,
-  DailyMessages, isErrorMessage,
+  DailyMessages, isErrorMessage, isUnreadMessage,
   LastMessageResponse,
   Message
 } from '../interfaces';
@@ -31,7 +31,6 @@ export class ChatsService {
 
   baseApiUrl = 'https://icherniakov.ru/yt-course/';
   chatsUrl = `${this.baseApiUrl}chat/`;
-  messageUrl = `${this.baseApiUrl}message/`;
 
   connectWebSocket() {
     return this.wsAdapter.connect({
@@ -43,7 +42,15 @@ export class ChatsService {
 
   handleWsMessage = (message: ChatWsMessage) => {
     console.log(message);
-    if (!('action' in message)) return;
+    // if (!('action' in message)) return;
+
+    if(isErrorMessage(message)) {
+      this.wsAdapter.disconnect();
+    }
+
+    if(isUnreadMessage(message)) {
+      this.unreadMessages.set(message.data.count)
+    }
 
     if(isNewMessage(message)) {
       this.activeChatMessages.set([
@@ -102,18 +109,6 @@ export class ChatsService {
       })
     );
   }
-
-  // sendMessage(chatId: number, message: string): Observable<Message> {
-  //   return this.http.post<Message>(
-  //     `${this.messageUrl}send/${chatId}`,
-  //     {},
-  //     {
-  //       params: {
-  //         message
-  //       }
-  //     }
-  //   );
-  // }
 
   private sortedMessagesByDays(messages: Message[]): DailyMessages[] {
     return messages.reduce(

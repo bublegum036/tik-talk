@@ -6,7 +6,7 @@ import { firstValueFrom, Subscription, timer } from 'rxjs';
 import { ImgUrlPipe } from '@tt/common-ui';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
 import { ProfileService } from '@tt/profile';
-import { ChatsService, isErrorMessage, isUnreadMessage } from '@tt/chats';
+import { ChatsService, isErrorMessage } from '@tt/chats';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -19,10 +19,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     RouterLink,
     AsyncPipe,
     ImgUrlPipe,
-    RouterLinkActive,
+    RouterLinkActive
   ],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+  styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent implements OnInit {
   profileService = inject(ProfileService);
@@ -32,14 +32,15 @@ export class SidebarComponent implements OnInit {
   wsSubscribe!: Subscription;
   subscribers$ = this.profileService.getSubscribersShortList();
 
-  unreadMessage = signal<number>(0);
   me = this.profileService.me;
+  unreadMessages = this.chatService.unreadMessages;
+
 
   menuItems = [
     {
       label: 'Моя страница',
       icon: 'home',
-      link: '/profile/me',
+      link: '/profile/me'
     },
     {
       label: 'Чаты',
@@ -50,14 +51,14 @@ export class SidebarComponent implements OnInit {
     {
       label: 'Поиск',
       icon: 'search',
-      link: 'search',
-    },
+      link: 'search'
+    }
   ];
 
   async reconnect() {
     console.log('reconnecting');
-    await firstValueFrom(this.profileService.getMe())
-    await firstValueFrom(timer(2000))
+    await firstValueFrom(this.profileService.getMe());
+    await firstValueFrom(timer(11000));
     this.connectWS();
   }
 
@@ -68,19 +69,15 @@ export class SidebarComponent implements OnInit {
       .subscribe(message => {
         if (isErrorMessage(message)) {
           console.log('Invalid token');
-          this.reconnect()
+          this.reconnect();
         }
 
-        if(isUnreadMessage(message)) {
-          this.unreadMessage.set(message.data.count)
-
-          this.menuItems.forEach(menu => {
-            if(menu.link === 'chats') {
-              menu.unread = this.unreadMessage()
-            }
-          })
-        }
-      })
+        this.menuItems.forEach(menu => {
+          if (menu.link === 'chats') {
+            menu.unread = this.unreadMessages();
+          }
+        });
+      });
   }
 
   ngOnInit() {
