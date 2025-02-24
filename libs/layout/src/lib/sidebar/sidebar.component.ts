@@ -72,8 +72,6 @@ export class SidebarComponent implements OnInit {
         }
 
         if(isUnreadMessage(message)) {
-          console.log(typeof message.data.count);
-          console.log(message.data.count);
           this.unreadMessage.set(message.data.count)
 
           this.menuItems.forEach(menu => {

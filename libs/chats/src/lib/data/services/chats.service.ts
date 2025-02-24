@@ -8,12 +8,12 @@ import {
   ChatGroupedMessage,
   ChatWsMessage,
   ChatWsService,
-  DailyMessages, isErrorMessage, isUnreadMessage,
+  DailyMessages, isErrorMessage,
   LastMessageResponse,
   Message
 } from '../interfaces';
 import { AuthService } from '@tt/auth';
-import { ChatWsNativeService, ChatWsRxJsService } from './';
+import { ChatWsRxJsService } from './';
 import { isNewMessage } from '../interfaces/type-guards';
 
 @Injectable({
@@ -44,10 +44,6 @@ export class ChatsService {
   handleWsMessage = (message: ChatWsMessage) => {
     console.log(message);
     if (!('action' in message)) return;
-
-    if (isErrorMessage(message)) {
-      this.wsAdapter.disconnect();
-    }
 
     if(isNewMessage(message)) {
       this.activeChatMessages.set([
