@@ -23,6 +23,7 @@ export class ChatWsRxJsService implements ChatWsService {
 
   disconnect(): void {
     this.#socket?.complete();
+    console.log('websocket disconnected');
   }
 
   sendMessage(text: string, chatId: number): void {

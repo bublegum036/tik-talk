@@ -8,7 +8,7 @@ import {
   ChatGroupedMessage,
   ChatWsMessage,
   ChatWsService,
-  DailyMessages, isUnreadMessage,
+  DailyMessages, isErrorMessage, isUnreadMessage,
   LastMessageResponse,
   Message
 } from '../interfaces';
@@ -25,6 +25,7 @@ export class ChatsService {
   me = inject(GlobalStoreService).me;
   activeChatMessages = signal<Message[]>([]);
   dailyMessages = signal<DailyMessages[]>([]);
+  unreadMessages = signal<number>(0);
 
   wsAdapter: ChatWsService = new ChatWsRxJsService();
 
@@ -44,8 +45,8 @@ export class ChatsService {
     console.log(message);
     if (!('action' in message)) return;
 
-    if(isUnreadMessage(message)) {
-    //TODO проверка непрочитанных сообщений скорее всего на главной странице
+    if (isErrorMessage(message)) {
+      this.wsAdapter.disconnect();
     }
 
     if(isNewMessage(message)) {

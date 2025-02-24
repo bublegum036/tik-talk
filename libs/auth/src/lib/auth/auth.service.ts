@@ -44,10 +44,12 @@ export class AuthService {
       })
       .pipe(
         tap((val) => {
+          console.log('refreshing tokens');
           this.saveTokens(val);
         }),
         catchError((err) => {
           this.logout();
+          console.log('error refreshing tokens');
           return throwError(err);
         })
       );
@@ -63,7 +65,9 @@ export class AuthService {
   saveTokens(res: TokenResponse) {
     this.token = res.access_token;
     this.refreshToken = res.refresh_token;
-    this.cookieService.set('token', this.token);
-    this.cookieService.set('refreshToken', this.refreshToken);
+
+    this.cookieService.set('token', this.token, {path: '/'});
+    this.cookieService.set('refreshToken', this.refreshToken, {path: '/'});
+    console.log('tokens save');
   }
 }

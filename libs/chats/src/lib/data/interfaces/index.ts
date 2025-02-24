@@ -1,7 +1,7 @@
 import { type ChatWsMessage } from './chat-ws-message.interface';
 import { type ChatConnectionWsParams, type ChatWsService } from './chat-ws-service.interface';
 import { type Chat, type ChatGroupedMessage, type Message, type DailyMessages, type LastMessageResponse } from './chats.interface';
-import { isUnreadMessage } from './type-guards';
+import { isErrorMessage, isUnreadMessage, isNewMessage } from './type-guards';
 
 export {
   Chat,
@@ -12,5 +12,7 @@ export {
   ChatWsService,
   ChatConnectionWsParams,
   ChatWsMessage,
-  isUnreadMessage
+  isUnreadMessage,
+  isErrorMessage,
+  isNewMessage
 }
