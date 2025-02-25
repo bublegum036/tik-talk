@@ -11,9 +11,9 @@ import {
   LastMessageResponse,
   Message
 } from '../interfaces';
-import { AuthService } from '@tt/auth';
 import { ChatWsRxJsService } from './index';
 import { GlobalStoreService } from '../../shared';
+import { AuthService } from '@tt/data-access/';
 
 @Injectable({
   providedIn: 'root'

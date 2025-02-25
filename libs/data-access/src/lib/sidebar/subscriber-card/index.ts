@@ -1,4 +1,4 @@
-import { SubscriberCardComponent } from "./subscriber-card.component";
+import { SubscriberCardComponent } from './subscriber-card.component';
 
 export {
   SubscriberCardComponent

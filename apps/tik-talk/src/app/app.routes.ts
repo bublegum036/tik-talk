@@ -3,11 +3,11 @@ import { LoginPageComponent } from '@tt/auth';
 import { LayoutComponent } from '@tt/layout';
 import { chatsRoutes } from '@tt/chats';
 import { ExperimentFormComponent } from '@tt/experiments';
-import { canActivateAuth } from '@tt/auth';
 import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { PostEffect, postsFeature, ProfileEffects, profileFeature } from '@tt/data-access/';
-import { ProfilePageComponent, SearchPageComponent, SettingsPageComponent } from '@tt/profile';
+import { canActivateAuth, PostEffect, postsFeature, ProfileEffects, profileFeature } from '@tt/data-access/';
+import { SearchPageComponent } from '@tt/profile';
+import { ProfilePageComponent, SettingsPageComponent } from '@tt/posts';
 
 export const routes: Routes = [
   {
