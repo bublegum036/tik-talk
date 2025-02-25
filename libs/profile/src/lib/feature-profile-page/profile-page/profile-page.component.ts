@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
-import { ProfileService } from '../../data';
+import { ProfileService } from '@tt/data-access/';
 import { GlobalStoreService, ImgUrlPipe, SvgIconComponent } from '@tt/data-access/';
 import { PostFeedComponent } from '@tt/posts';
 

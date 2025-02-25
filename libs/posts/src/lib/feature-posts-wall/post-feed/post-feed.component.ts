@@ -10,7 +10,7 @@ import {
 import { PostInputComponent } from '../../ui';
 import { debounceTime, fromEvent, tap } from 'rxjs';
 import { PostComponent } from '../post';
-import { postsActions, PostService, selectGetPosts } from '../../data';
+import { postsActions, PostService, selectGetPosts } from '@tt/data-access/';
 import { Store } from '@ngrx/store';
 import { AsyncPipe } from '@angular/common';
 import { GlobalStoreService } from '@tt/data-access/';

@@ -1,5 +1,5 @@
 import { createActionGroup, props } from '@ngrx/store';
-import { Profile } from 'libs/data-access/src/lib/profile';
+import { Profile } from '../../interfaces';
 import { SearchFormType } from '@tt/data-access/';
 
 export const profileActions = createActionGroup({

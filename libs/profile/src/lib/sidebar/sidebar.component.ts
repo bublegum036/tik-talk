@@ -3,9 +3,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { firstValueFrom, Subscription, timer } from 'rxjs';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
-import { ProfileService } from '@tt/profile';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ChatsService, ImgUrlPipe, isErrorMessage, SvgIconComponent } from '@tt/data-access/';
+import { ChatsService, ImgUrlPipe, isErrorMessage, ProfileService, SvgIconComponent } from '@tt/data-access/';
 
 @Component({
   selector: 'app-sidebar',

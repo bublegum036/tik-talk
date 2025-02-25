@@ -1,5 +1,2 @@
-import { type Profile } from "./profile.interfaces";
-
-export {
-  Profile
-}
+export * from './interfaces'
+export * from './data'

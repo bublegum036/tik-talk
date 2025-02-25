@@ -1,7 +1,7 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { PostInputComponent } from '../../ui';
 import { CommentComponent } from '../../ui';
-import { PostService } from '../../data';
+import { PostService } from '../../../../../data-access/src/lib/posts/data';
 import { switchMap } from 'rxjs';
 import {
   AvatarCircleComponent,

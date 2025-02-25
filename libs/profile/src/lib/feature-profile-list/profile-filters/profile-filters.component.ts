@@ -2,9 +2,9 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, startWith } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { profileActions } from '../../data';
+import { profileActions } from '../../../../../data-access/src/lib/profile/data';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { selectSearchForm } from '../../data/store/selectors';
+import { selectSearchForm } from '../../../../../data-access/src/lib/profile/data/store/selectors';
 import { SearchFormType } from '@tt/data-access/';
 
 @Component({

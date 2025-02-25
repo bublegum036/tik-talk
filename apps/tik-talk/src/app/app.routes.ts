@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginPageComponent } from '@tt/auth';
-import { ProfileEffects, profileFeature, SearchPageComponent } from '@tt/profile';
+import { SearchPageComponent } from '@tt/profile';
 import { ProfilePageComponent } from '@tt/profile';
 import { LayoutComponent } from '@tt/layout';
 import { SettingsPageComponent } from '@tt/profile';
@@ -9,8 +9,7 @@ import { ExperimentFormComponent } from '@tt/experiments';
 import { canActivateAuth } from '@tt/auth';
 import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { postsFeature } from '@tt/posts';
-import { PostEffect } from '@tt/posts';
+import { PostEffect, postsFeature, ProfileEffects, profileFeature } from '@tt/data-access/';
 
 export const routes: Routes = [
   {
