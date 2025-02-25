@@ -1,7 +1,6 @@
 import { Component, input } from '@angular/core';
 import { RouterLinkActive } from '@angular/router';
-import { AvatarCircleComponent } from '@tt/common-ui';
-import { LastMessageResponse } from '../../../../../../data-access/src/lib/chats';
+import { AvatarCircleComponent, LastMessageResponse } from '@tt/data-access/';
 
 @Component({
   selector: 'button[chats]',

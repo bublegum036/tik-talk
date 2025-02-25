@@ -1,7 +1,6 @@
 import { Component, signal } from '@angular/core';
-import { SvgIconComponent } from '@tt/common-ui';
-import { DndDirective } from '../../../../../common-ui/src/lib/directives/dnd.directive';
 import { FormsModule } from '@angular/forms';
+import { DndDirective, SvgIconComponent } from '@tt/data-access/';
 
 @Component({
   selector: 'app-avatar-upload',

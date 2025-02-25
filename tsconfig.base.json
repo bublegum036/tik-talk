@@ -29,7 +29,7 @@
       "@tt/shared": ["libs/shared/src/index.ts"],
       "@tt/data-access/": ["libs/data-access/src/index.ts"]
     },
-    "base—Url": ".",
+    "baseUrl": ".",
     "rootDir": "."
   },
   "angularCompilerOptions": {

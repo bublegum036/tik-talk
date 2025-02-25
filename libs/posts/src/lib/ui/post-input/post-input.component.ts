@@ -7,10 +7,8 @@ import {
   Output,
   Renderer2,
 } from '@angular/core';
-import { AvatarCircleComponent } from '@tt/common-ui';
-import { SvgIconComponent } from '@tt/common-ui';
 import { FormsModule } from '@angular/forms';
-import { GlobalStoreService } from '../../../../../data-access/src/lib/shared';
+import { AvatarCircleComponent, GlobalStoreService, SvgIconComponent } from '@tt/data-access/';
 
 @Component({
   selector: 'app-post-input',

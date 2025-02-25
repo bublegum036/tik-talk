@@ -5,10 +5,8 @@ import {
   Output,
   Renderer2,
 } from '@angular/core';
-import { AvatarCircleComponent } from '@tt/common-ui';
 import { FormsModule } from '@angular/forms';
-import { SvgIconComponent } from '@tt/common-ui';
-import { GlobalStoreService } from '@tt/data-access/';
+import { AvatarCircleComponent, SvgIconComponent, GlobalStoreService } from '@tt/data-access/';
 
 @Component({
   selector: 'app-message-input',
