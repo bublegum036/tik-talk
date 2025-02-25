@@ -1,6 +1,6 @@
-import { Post } from '@tt/shared';
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { postsActions } from './actions';
+import { Post } from '@tt/data-access/';
 
 export interface PostsState {
   posts: Post[],

@@ -4,10 +4,9 @@ import { SvgIconComponent } from '@tt/common-ui';
 import { PostInputComponent } from '../../ui';
 import { CommentComponent } from '../../ui';
 import { PostService } from '../../data';
-import { map, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { DateClockPipe } from '@tt/common-ui';
-import { GlobalStoreService, Post, PostComment } from '@tt/shared';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { GlobalStoreService, Post, PostComment } from '@tt/data-access/';
 
 @Component({
   selector: 'app-post',

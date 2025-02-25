@@ -6,9 +6,9 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { SvgIconComponent } from '@tt/common-ui';
 import { ImgUrlPipe } from '@tt/common-ui';
-import { GlobalStoreService } from '@tt/shared';
 import { PostFeedComponent } from '@tt/posts';
 import { ProfileService } from '../../data';
+import { GlobalStoreService } from '@tt/data-access/';
 
 @Component({
   selector: 'app-profile-page',

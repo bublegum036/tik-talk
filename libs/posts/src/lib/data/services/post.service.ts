@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { map, switchMap } from 'rxjs';
-import { CommentCreateDto, Post, PostComment, PostCreateDto } from '@tt/shared';
+import { CommentCreateDto, Post, PostComment, PostCreateDto } from '@tt/data-access/';
 
 @Injectable({
   providedIn: 'root',

@@ -5,10 +5,10 @@ import {
   Output,
   Renderer2,
 } from '@angular/core';
-import { AvatarCircleComponent } from '../../../../../common-ui/src/lib/components/avatar-circle/avatar-circle.component';
+import { AvatarCircleComponent } from '@tt/common-ui';
 import { FormsModule } from '@angular/forms';
-import { SvgIconComponent } from '../../../../../common-ui/src/lib/components/svg-icon/svg-icon.component';
-import { GlobalStoreService } from '../../../../../shared/src/lib';
+import { SvgIconComponent } from '@tt/common-ui';
+import { GlobalStoreService } from '@tt/data-access/';
 
 @Component({
   selector: 'app-message-input',

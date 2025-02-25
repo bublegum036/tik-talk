@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { SvgIconComponent } from '@tt/common-ui';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
@@ -6,8 +6,8 @@ import { firstValueFrom, Subscription, timer } from 'rxjs';
 import { ImgUrlPipe } from '@tt/common-ui';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
 import { ProfileService } from '@tt/profile';
-import { ChatsService, isErrorMessage } from '@tt/chats';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ChatsService, isErrorMessage } from '../../../../data-access/src/lib/chats';
 
 @Component({
   selector: 'app-sidebar',

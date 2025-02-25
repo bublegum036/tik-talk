@@ -2,19 +2,18 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { map, Observable } from 'rxjs';
-import { GlobalStoreService } from '@tt/shared';
 import {
   Chat,
   ChatGroupedMessage,
   ChatWsMessage,
   ChatWsService,
-  DailyMessages, isUnreadMessage,
+  DailyMessages, isNewMessage, isUnreadMessage,
   LastMessageResponse,
   Message
 } from '../interfaces';
 import { AuthService } from '@tt/auth';
-import { ChatWsRxJsService } from './';
-import { isNewMessage } from '../interfaces/type-guards';
+import { ChatWsRxJsService } from './index';
+import { GlobalStoreService } from '../../shared';
 
 @Injectable({
   providedIn: 'root'

@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule }
 import { debounceTime, startWith } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { profileActions } from '../../data';
-import { SearchFormType } from '@tt/shared';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { selectSearchForm } from '../../data/store/selectors';
+import { SearchFormType } from '@tt/data-access/';
 
 @Component({
   selector: 'app-profile-filters',
