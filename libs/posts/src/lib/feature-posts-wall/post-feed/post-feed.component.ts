@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { PostInputComponent } from '../../ui';
 import { debounceTime, fromEvent, tap } from 'rxjs';
-import { PostComponent } from '../post/';
+import { PostComponent } from '../post';
 import { postsActions, PostService, selectGetPosts } from '../../data';
 import { Store } from '@ngrx/store';
 import { AsyncPipe } from '@angular/common';

@@ -1,12 +1,10 @@
 import { Component, inject, input } from '@angular/core';
-import { ChatWorkspaceMessageComponent } from './chat-workspace-message/chat-workspace-message.component';
-import { MessageInputComponent } from '../../../../ui/message-input/message-input.component';
-import { ChatsService } from '../../../../../../../data-access/src/lib/chats/services/chats.service';
-import {
-  ChatGroupedMessage,
-} from '../../../../../../../data-access/src/lib/chats/interfaces/chats.interface';
+
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { ChatWorkspaceMessageComponent } from '../../..';
+import { MessageInputComponent } from 'libs/chats/src/lib/ui';
+import { ChatGroupedMessage, ChatsService } from '@tt/data-access/';
 
 @Component({
   selector: 'app-chat-workspace-messages-wrapper',

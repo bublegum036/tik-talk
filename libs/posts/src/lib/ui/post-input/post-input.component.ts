@@ -19,7 +19,6 @@ import { AvatarCircleComponent, GlobalStoreService, SvgIconComponent } from '@tt
 })
 export class PostInputComponent {
   r2 = inject(Renderer2);
-  #globalStoreService = inject(GlobalStoreService);
 
   public postId = input<number>(0);
   public isCommentInput = input(false);

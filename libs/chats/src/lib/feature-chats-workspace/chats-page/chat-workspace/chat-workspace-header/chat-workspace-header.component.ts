@@ -1,6 +1,5 @@
 import { Component, input } from '@angular/core';
-import { AvatarCircleComponent } from '@tt/data-access/';
-import { Profile } from 'libs/data-access/src/lib/profile';
+import { AvatarCircleComponent, Profile } from '@tt/data-access/';
 
 @Component({
   selector: 'app-chat-workspace-header',

@@ -4,9 +4,9 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
-import { PostFeedComponent } from '@tt/posts';
 import { ProfileService } from '../../data';
 import { GlobalStoreService, ImgUrlPipe, SvgIconComponent } from '@tt/data-access/';
+import { PostFeedComponent } from '@tt/posts';
 
 @Component({
   selector: 'app-profile-page',
