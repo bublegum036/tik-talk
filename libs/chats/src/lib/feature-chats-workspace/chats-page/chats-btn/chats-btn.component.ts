@@ -4,11 +4,12 @@ import {
   Chat,
   LastMessageResponse,
 } from '../../../data/interfaces/chats.interface';
+import { RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'button[chats]',
   standalone: true,
-  imports: [AvatarCircleComponent],
+  imports: [AvatarCircleComponent, RouterLinkActive],
   templateUrl: './chats-btn.component.html',
   styleUrl: './chats-btn.component.scss',
 })

@@ -15,6 +15,10 @@
   background: var(--dark-active-color);
 }
 
+:host.active .chat-user {
+  color: var(--primary-color);
+}
+
 .last-message__wrapper {
   display: flex;
   flex-direction: column;
