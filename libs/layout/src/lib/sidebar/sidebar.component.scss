@@ -6,9 +6,12 @@
   width: 100%;
 
   .main-menu-container {
-    position: fixed;
+    position: sticky;
+    top: 20px;
 
     .main-menu-list {
+      position: sticky;
+      top: 0;
       display: grid;
       grid-gap: 8px;
       list-style: none;
@@ -22,7 +25,7 @@
       border: none;
       background: none;
       color: var(--light-color);
-      grid-template-columns: 16px 1fr max-content;
+      grid-template-columns: 16px 1fr 26px;
       font-weight: 700;
       font-size: 14px;
       line-height: 24px;
@@ -71,61 +74,67 @@
       height: 16px;
     }
 
-    .to-subscribers {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
+    .subscribers-container {
+      position: fixed;
 
-    .to-subscribers-link {
-      color: var(--primary-color);
-      text-decoration: none;
-    }
+      .to-subscribers {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
 
-    .to-subscribers-icon {
-      width: 18px;
-      height: 18px;
-    }
+      .to-subscribers-link {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .to-subscribers-icon {
+        width: 18px;
+        height: 18px;
+      }
 
 
-    .experiment {
-      cursor: pointer;
-      padding: 16px;
-      display: grid;
-      color: var(--dark-hover-color);
+      .experiment {
+        cursor: pointer;
+        padding: 16px;
+        display: grid;
+        color: var(--dark-hover-color);
 
-      &:hover {
-        color: var(--light-color);
+        &:hover {
+          color: var(--light-color);
+        }
       }
     }
-  }
 
-  .sidebar__footer {
-    background-color: var(--dark-hover-color);
-    border-radius: 2px;
-    padding: 4px 16px;
-    display: grid;
-    grid-template-columns: 32px 1fr 16px;
-    grid-gap: 12px;
-    align-items: center;
-    position: fixed;
-    bottom: 20px;
-    img {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-    }
 
-    .username-text {
-      color: var(--primary-color);
-      font-weight: 700;
-    }
 
-    .settings-button {
-      svg {
-        width: 13px;
-        height: 13px;
+    .sidebar__footer {
+      background-color: var(--dark-hover-color);
+      border-radius: 2px;
+      padding: 4px 16px;
+      display: grid;
+      grid-template-columns: 32px 1fr 16px;
+      grid-gap: 12px;
+      align-items: center;
+      position: fixed;
+      bottom: 20px;
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+      }
+
+      .username-text {
         color: var(--primary-color);
+        font-weight: 700;
+      }
+
+      .settings-button {
+        svg {
+          width: 13px;
+          height: 13px;
+          color: var(--primary-color);
+        }
       }
     }
   }

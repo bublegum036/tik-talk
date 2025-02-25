@@ -17,36 +17,40 @@
     </ul>
   </nav>
 
-  <p class="medium-text mb20 mt20 pl14">Подписчики</p>
+  <div class="subscribers-container">
+    <p class="medium-text mb20 mt20 pl14">Подписчики</p>
 
-  @for (profile of subscribers$ | async; track profile.id) {
-    <app-subscriber-card [profile]="profile"></app-subscriber-card>
-  }
-
-  <div class="mt20 pl14 to-subscribers">
-    <a [routerLink]="['/subscribers']" class="to-subscribers-link medium-text"
-    >Все подписчики</a
-    >
-    <svg icon="arrow" class="to-subscribers-icon"></svg>
-  </div>
-
-  <div [routerLink]="['experiment']" class="experiment">Эксперимент</div>
-</div>
-
-<footer class="sidebar__footer">
-  @if (me(); as me) {
-    @if (me.avatarUrl) {
-      <img [src]="me.avatarUrl | imgUrl" />
-    } @else {
-      <img src="/assets/imgs/avatar-null.png" />
+    @for (profile of subscribers$ | async; track profile.id) {
+      <app-subscriber-card [profile]="profile"></app-subscriber-card>
     }
 
-    <div class="medium-text username-text">
-      {{ me.username }}
+    <div class="mt20 pl14 to-subscribers">
+      <a [routerLink]="['/subscribers']" class="to-subscribers-link medium-text"
+      >Все подписчики</a
+      >
+      <svg icon="arrow" class="to-subscribers-icon"></svg>
     </div>
 
-    <a [routerLink]="['settings']" class="settings-button">
-      <svg icon="settings"></svg>
-    </a>
-  }
-</footer>
+    <div [routerLink]="['experiment']" class="experiment">Эксперимент</div>
+  </div>
+
+
+  <footer class="sidebar__footer">
+    @if (me(); as me) {
+      @if (me.avatarUrl) {
+        <img [src]="me.avatarUrl | imgUrl" />
+      } @else {
+        <img src="/assets/imgs/avatar-null.png" />
+      }
+
+      <div class="medium-text username-text">
+        {{ me.username }}
+      </div>
+
+      <a [routerLink]="['settings']" class="settings-button">
+        <svg icon="settings"></svg>
+      </a>
+    }
+  </footer>
+</div>
+
