@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SidebarComponent } from '@tt/profile';
+import { SidebarComponent } from '@tt/data-access/';
 
 @Component({
   selector: 'app-layout',
