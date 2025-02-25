@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { map, tap } from 'rxjs';
 import { Profile } from '../../interfaces';
-import { GlobalStoreService, Pageble } from '@tt/data-access/';
+import { GlobalStoreService, Pageble } from '../../../shared';
 
 @Injectable({
   providedIn: 'root',

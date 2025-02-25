@@ -1,5 +1,5 @@
 import { createActionGroup, props } from '@ngrx/store';
-import { Post } from '@tt/data-access/';
+import { Post } from '../../../shared';
 
 export const postsActions = createActionGroup({
   source: 'posts',

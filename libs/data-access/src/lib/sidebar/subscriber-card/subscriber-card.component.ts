@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ImgUrlPipe, Profile } from '@tt/data-access/';
+import { ImgUrlPipe } from '../../pipes';
+import { Profile } from '../../profile';
 
 @Component({
   selector: 'app-subscriber-card',

@@ -1,9 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChatsService } from '@tt/data-access/';
 import { filter, of, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { ChatWorkspaceHeaderComponent, ChatWorkspaceMessagesWrapperComponent } from '../..';
+import { ChatWorkspaceHeaderComponent } from './chat-workspace-header';
+import { ChatWorkspaceMessagesWrapperComponent } from './chat-workspace-messages-wrapper';
+import { ChatsService } from '@tt/data-access/';
+
 
 @Component({
   selector: 'app-chat-workspace',

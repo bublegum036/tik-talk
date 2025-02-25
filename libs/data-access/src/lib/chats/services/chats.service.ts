@@ -13,7 +13,7 @@ import {
 } from '../interfaces';
 import { ChatWsRxJsService } from './index';
 import { GlobalStoreService } from '../../shared';
-import { AuthService } from '@tt/data-access/';
+import { AuthService } from '../../auth';
 
 @Injectable({
   providedIn: 'root'

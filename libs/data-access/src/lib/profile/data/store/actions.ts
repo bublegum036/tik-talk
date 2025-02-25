@@ -1,6 +1,6 @@
 import { createActionGroup, props } from '@ngrx/store';
 import { Profile } from '../../interfaces';
-import { SearchFormType } from '@tt/data-access/';
+import { SearchFormType } from '../../../shared';
 
 export const profileActions = createActionGroup({
     source: 'profile',

@@ -1,4 +1,4 @@
-import { MessageInputComponent } from "./message-input/message-input.component";
+import { MessageInputComponent } from './message-input';
 
 export {
   MessageInputComponent

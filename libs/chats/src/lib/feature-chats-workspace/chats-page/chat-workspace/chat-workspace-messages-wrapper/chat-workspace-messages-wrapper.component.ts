@@ -2,9 +2,9 @@ import { Component, inject, input } from '@angular/core';
 
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { ChatWorkspaceMessageComponent } from '../../..';
-import { MessageInputComponent } from 'libs/chats/src/lib/ui';
 import { ChatGroupedMessage, ChatsService } from '@tt/data-access/';
+import { MessageInputComponent } from '../../../../ui';
+import { ChatWorkspaceMessageComponent } from './chat-workspace-message';
 
 @Component({
   selector: 'app-chat-workspace-messages-wrapper',

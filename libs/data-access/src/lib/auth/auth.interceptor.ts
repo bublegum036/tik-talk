@@ -58,7 +58,7 @@ const refreshAndProceed = (
 
   return isRefreshing$.pipe(
     filter((isRefreshing) => !isRefreshing),
-    switchMap((response) => {
+    switchMap(() => {
       return next(addToken(req, authService.token!));
     })
   );

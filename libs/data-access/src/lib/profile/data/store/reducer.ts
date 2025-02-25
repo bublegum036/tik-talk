@@ -1,7 +1,8 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { profileActions } from './actions';
 import { FormControl } from '@angular/forms';
-import { Profile, SearchFormType } from '@tt/data-access/';
+import { Profile } from '../../interfaces';
+import { SearchFormType } from '../../../shared';
 
 export interface ProfileState {
   profiles: Profile[],

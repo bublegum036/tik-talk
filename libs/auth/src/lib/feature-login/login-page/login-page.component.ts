@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../../../data-access/src/lib/auth/auth.service';
+import { AuthService } from '@tt/data-access/';
 
 @Component({
   selector: 'app-login-page',

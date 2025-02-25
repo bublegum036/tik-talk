@@ -2,16 +2,18 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { firstValueFrom, Subscription, timer } from 'rxjs';
-import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ChatsService, ImgUrlPipe, isErrorMessage, ProfileService, SvgIconComponent } from '@tt/data-access/';
+import { SvgIconComponent } from '../components';
+import { ImgUrlPipe } from '../pipes';
+import { ProfileService } from '../profile';
+import { ChatsService, isErrorMessage } from '../chats';
+import { SubscriberCardComponent } from './subscriber-card';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
   imports: [
     SvgIconComponent,
-    SubscriberCardComponent,
     SubscriberCardComponent,
     RouterLink,
     AsyncPipe,
