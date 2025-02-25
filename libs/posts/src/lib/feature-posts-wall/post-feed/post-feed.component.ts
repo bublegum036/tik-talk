@@ -7,18 +7,17 @@ import {
   input, OnInit,
   Renderer2,
 } from '@angular/core';
-import { PostInputComponent } from '../../ui';
 import { debounceTime, fromEvent, tap } from 'rxjs';
 import { PostComponent } from '../post';
 import { postsActions, PostService, selectGetPosts } from '@tt/data-access/';
 import { Store } from '@ngrx/store';
-import { AsyncPipe } from '@angular/common';
 import { GlobalStoreService } from '@tt/data-access/';
+import { PostInputComponent } from '../../ui';
 
 @Component({
   selector: 'app-post-feed',
   standalone: true,
-  imports: [PostInputComponent, PostComponent, AsyncPipe],
+  imports: [PostInputComponent, PostComponent],
   templateUrl: './post-feed.component.html',
   styleUrl: './post-feed.component.scss'
 })
