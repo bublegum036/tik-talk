@@ -8,7 +8,7 @@ import {
   ChatGroupedMessage,
   ChatWsMessage,
   ChatWsService,
-  DailyMessages, isErrorMessage, isUnreadMessage,
+  DailyMessages, isUnreadMessage,
   LastMessageResponse,
   Message
 } from '../interfaces';
@@ -42,11 +42,6 @@ export class ChatsService {
 
   handleWsMessage = (message: ChatWsMessage) => {
     console.log(message);
-    // if (!('action' in message)) return;
-
-    if(isErrorMessage(message)) {
-      this.wsAdapter.disconnect();
-    }
 
     if(isUnreadMessage(message)) {
       this.unreadMessages.set(message.data.count)

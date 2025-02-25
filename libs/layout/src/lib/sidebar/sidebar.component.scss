@@ -39,6 +39,16 @@
       color: var(--primary-color);
     }
   }
+
+  .unread-message {
+    width: 26px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+    background: var(--primary-color);
+    color: var(--dark-color);
+    border-radius: 2px;
+  }
 }
 
 .menu-item svg {

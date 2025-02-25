@@ -8,7 +8,7 @@
         <svg [icon]="item.icon"></svg>
         <span> {{ item.label }} </span>
         @if(item.link === 'chats' && unreadMessages() > 0) {
-          <span> {{ unreadMessages() }} </span>
+          <span class="unread-message"> {{ unreadMessages() }} </span>
         }
       </a>
     </li>
