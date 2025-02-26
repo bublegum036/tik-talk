@@ -19,6 +19,7 @@ import { ChatsService } from '@tt/data-access/';
   styleUrl: './chat-workspace.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class ChatWorkspaceComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   router: Router = inject(Router);

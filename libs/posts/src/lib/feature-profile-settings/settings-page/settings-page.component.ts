@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, effect, inject, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProfileService } from '@tt/data-access/';
+import { GlobalStoreService, ProfileService } from '@tt/data-access/';
 import { firstValueFrom } from 'rxjs';
 import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
 
@@ -15,6 +15,8 @@ import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
 export class SettingsPageComponent implements AfterViewInit{
   fb = inject(FormBuilder);
   profileService = inject(ProfileService);
+  me = inject(GlobalStoreService).me;
+
 
   @ViewChild(AvatarUploadComponent) avatarUploader!: AvatarUploadComponent;
 
@@ -30,9 +32,9 @@ export class SettingsPageComponent implements AfterViewInit{
     effect(() => {
       // @ts-ignore
       this.form.patchValue({
-        ...this.profileService.me(),
+        ...this.me(),
         // @ts-ignore
-        stack: this.mergeStack(this.profileService.me()?.stack),
+        stack: this.mergeStack(this.me()?.stack),
       });
     });
   }

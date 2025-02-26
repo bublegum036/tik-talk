@@ -22,7 +22,6 @@ export class ProfileService {
     return this.http
       .get<Profile>(`${this.baseApiUrl}account/me`)
       .pipe(tap((response) => {
-        this.me.set(response);
         this.#globalStoreService.me.set(response)
       }));
   }

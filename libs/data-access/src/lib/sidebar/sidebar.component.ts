@@ -8,6 +8,7 @@ import { ImgUrlPipe } from '../pipes';
 import { ProfileService } from '../profile';
 import { ChatsService, isErrorMessage } from '../chats';
 import { SubscriberCardComponent } from './subscriber-card';
+import { GlobalStoreService } from '@tt/data-access/';
 
 @Component({
   selector: 'app-sidebar',
@@ -32,7 +33,7 @@ export class SidebarComponent implements OnInit {
   wsSubscribe!: Subscription;
   subscribers$ = this.profileService.getSubscribersShortList();
 
-  me = this.profileService.me;
+  me = inject(GlobalStoreService).me;
   unreadMessages = this.chatService.unreadMessages;
 
 

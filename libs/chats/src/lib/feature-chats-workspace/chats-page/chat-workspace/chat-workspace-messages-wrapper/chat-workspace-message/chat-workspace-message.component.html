@@ -2,9 +2,9 @@
   @for (message of messages; track message.id) {
     <div
       [ngClass]="{
-    'is-mine': message.isMine,
-    'message-container': !message.isMine
-  }"
+        'is-mine': message.isMine,
+        'message-container': !message.isMine
+       }"
     >
       <app-avatar-circle
         class="size32"

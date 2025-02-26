@@ -14,6 +14,7 @@ import {
 import { ChatWsRxJsService } from './index';
 import { GlobalStoreService } from '../../shared';
 import { AuthService } from '../../auth';
+import { Profile } from '../../profile';
 
 @Injectable({
   providedIn: 'root'
@@ -56,10 +57,14 @@ export class ChatsService {
           text: message.data.message,
           createdAt: message.data.created_at,
           isRead: false,
-          isMine: false
+          isMine: message.data.author === this.me()?.id,
+          user: {
+            ...this.activeChatMessages().find(mes => mes.user?.id === message.data.author)?.user || this.me(),
+          } as Profile,
         }
       ]);
-      this.dailyMessages.set(this.sortedMessagesByDays(this.activeChatMessages()));
+
+     this.dailyMessages.set(this.sortedMessagesByDays(this.activeChatMessages()));
     }
   };
 

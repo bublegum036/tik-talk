@@ -16,7 +16,7 @@ export interface ChatWsNewMessage extends ChatWsMessageBase {
     message: string,
     chat_id: number,
     created_at: string,
-    author: number
+    author: number,
   }
 }
 
