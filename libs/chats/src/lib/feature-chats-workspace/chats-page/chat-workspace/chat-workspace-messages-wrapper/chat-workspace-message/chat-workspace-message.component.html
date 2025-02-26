@@ -1,5 +1,5 @@
-@if (dailyMessage().messages; as messages) { @for (message of messages; track
-message.id) {
+@if (dailyMessage().messages; as messages) {
+  @for (message of messages; track message.id) {
 <div
   [ngClass]="{
     'is-mine': message.isMine,
@@ -18,4 +18,5 @@ message.id) {
     {{ message.text }}
   </div>
 </div>
-} }
+}
+}

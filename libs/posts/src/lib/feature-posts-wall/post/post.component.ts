@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, OnInit, signal } from '@angular/core';
 import { switchMap } from 'rxjs';
 import {
   AvatarCircleComponent,
@@ -22,6 +22,7 @@ import { CommentComponent, PostInputComponent } from '../../ui';
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostComponent implements OnInit {
   public post = input<Post>();

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ImgUrlPipe, Profile } from '@tt/data-access/';
 
 @Component({
@@ -7,6 +7,7 @@ import { ImgUrlPipe, Profile } from '@tt/data-access/';
   imports: [ImgUrlPipe],
   templateUrl: './profile-user.component.html',
   styleUrl: './profile-user.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileUserComponent {
   @Input() profile!: Profile;

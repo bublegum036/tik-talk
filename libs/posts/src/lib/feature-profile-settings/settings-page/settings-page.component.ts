@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, effect, inject, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, effect, inject, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProfileService } from '@tt/data-access/';
 import { firstValueFrom } from 'rxjs';
@@ -10,6 +10,7 @@ import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
   imports: [ProfileHeaderComponent, ReactiveFormsModule, AvatarUploadComponent],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsPageComponent implements AfterViewInit{
   fb = inject(FormBuilder);

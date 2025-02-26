@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -12,6 +12,7 @@ import { ChatWorkspaceMessageComponent } from './chat-workspace-message';
   imports: [ChatWorkspaceMessageComponent, MessageInputComponent, DatePipe],
   templateUrl: './chat-workspace-messages-wrapper.component.html',
   styleUrl: './chat-workspace-messages-wrapper.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatWorkspaceMessagesWrapperComponent {
   chatService = inject(ChatsService);

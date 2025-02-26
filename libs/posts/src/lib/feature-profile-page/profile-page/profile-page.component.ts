@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
@@ -20,6 +20,7 @@ import { PostFeedComponent, ProfileHeaderComponent } from '@tt/posts';
   ],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfilePageComponent {
   globalStoreService = inject(GlobalStoreService);

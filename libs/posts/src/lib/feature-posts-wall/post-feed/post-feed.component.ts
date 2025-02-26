@@ -1,11 +1,11 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostListener,
   inject,
   input, OnInit,
-  Renderer2,
+  Renderer2
 } from '@angular/core';
 import { debounceTime, fromEvent, tap } from 'rxjs';
 import { PostComponent } from '../post';
@@ -19,7 +19,8 @@ import { PostInputComponent } from '../../ui';
   standalone: true,
   imports: [PostInputComponent, PostComponent],
   templateUrl: './post-feed.component.html',
-  styleUrl: './post-feed.component.scss'
+  styleUrl: './post-feed.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostFeedComponent implements OnInit, AfterViewInit {
   private postService = inject(PostService);

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { AvatarCircleComponent, DailyMessages } from '@tt/data-access/';
 import { DatePipe, NgClass } from '@angular/common';
 
@@ -8,6 +8,7 @@ import { DatePipe, NgClass } from '@angular/common';
   imports: [AvatarCircleComponent, DatePipe, NgClass],
   templateUrl: './chat-workspace-message.component.html',
   styleUrl: './chat-workspace-message.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatWorkspaceMessageComponent {
   dailyMessage = input.required<DailyMessages>();
