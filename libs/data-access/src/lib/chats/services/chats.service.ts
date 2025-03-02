@@ -29,7 +29,7 @@ export class ChatsService {
 
   wsAdapter: ChatWsService = new ChatWsRxJsService();
 
-  baseApiUrl = 'https://icherniakov.ru/yt-course/';
+  baseApiUrl = '/yt-course/';
   chatsUrl = `${this.baseApiUrl}chat/`;
 
   connectWebSocket() {
@@ -48,8 +48,13 @@ export class ChatsService {
     }
 
     if(isNewMessage(message)) {
+      const me = this.me();
+      const activeChatMessages = this.activeChatMessages();
+
+      if(!me || !activeChatMessages) return;
+
       this.activeChatMessages.set([
-        ...this.activeChatMessages(),
+        ...activeChatMessages,
         {
           id: message.data.id,
           userFromId: message.data.author,
@@ -57,10 +62,8 @@ export class ChatsService {
           text: message.data.message,
           createdAt: message.data.created_at,
           isRead: false,
-          isMine: message.data.author === this.me()?.id,
-          user: {
-            ...this.activeChatMessages().find(mes => mes.user?.id === message.data.author)?.user || this.me(),
-          } as Profile,
+          isMine: message.data.author === me.id,
+          user: (activeChatMessages.find(mes => mes.user?.id === message.data.author)?.user || me) as Profile,
         }
       ]);
 
