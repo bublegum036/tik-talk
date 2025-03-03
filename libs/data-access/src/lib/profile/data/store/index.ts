@@ -1,4 +1,3 @@
-import { selectSearchForm } from "./selectors";
 import { profileActions } from "./actions";
 import { ProfileEffects } from "./effects";
 import { initialState, profileFeature, type ProfileState } from "./reducer";
@@ -11,5 +10,4 @@ export {
   initialState,
   profileFeature,
   ProfileEffects,
-  selectSearchForm
 }

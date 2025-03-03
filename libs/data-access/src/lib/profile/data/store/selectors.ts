@@ -6,11 +6,17 @@ export const selectFilteredProfiles = createSelector(
   (profiles) => profiles
 );
 
-export const selectSearchForm = createSelector(
-  profileFeature.selectSearchForm,
-  (searchForm) => {
-      searchForm.firstName,
-      searchForm.lastName,
-      searchForm.stack;
+export const selectProfilePageable = createSelector(
+  profileFeature.selectProfileFeatureState,
+  (state) => {
+    return {
+      page: state.page,
+      size: state.size,
+    }
   }
+);
+
+export const selectProfileFilters = createSelector(
+  profileFeature.selectProfileFilters,
+  (filters) => filters
 );

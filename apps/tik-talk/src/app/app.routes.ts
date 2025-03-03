@@ -5,9 +5,9 @@ import { ExperimentFormComponent } from '@tt/experiments';
 import { provideState } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { canActivateAuth, PostEffect, postsFeature, ProfileEffects, profileFeature } from '@tt/data-access/';
-import { SearchPageComponent } from '@tt/profile';
 import { ProfilePageComponent, SettingsPageComponent } from '@tt/posts';
 import { chatsRoutes } from '@tt/chats';
+import { SearchPageComponent } from '@tt/profile';
 
 export const routes: Routes = [
   {

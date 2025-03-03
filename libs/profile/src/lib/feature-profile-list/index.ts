@@ -1,7 +1,9 @@
-import { ProfileFiltersComponent } from './profile-filters/profile-filters.component';
-import { SearchPageComponent } from './search-page/search-page.component';
+import { ProfileCardContainerComponent } from './profile-card-container';
+import { ProfileFiltersComponent } from './profile-filters';
+import { SearchPageComponent } from './search-page';
 
 export {
-  SearchPageComponent,
-  ProfileFiltersComponent
+  ProfileCardContainerComponent,
+  ProfileFiltersComponent,
+  SearchPageComponent
 }

@@ -1,0 +1,1 @@
+export { InfiniteScrollTriggerComponent } from './infinite-scroll-trigger.component';

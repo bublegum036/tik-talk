@@ -1,3 +1,3 @@
-import { ProfileFiltersComponent } from "./profile-filters.component";
+import { ProfileFiltersComponent } from './profile-filters.component';
 
 export { ProfileFiltersComponent }

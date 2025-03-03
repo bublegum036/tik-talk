@@ -1,23 +1,19 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { profileActions } from './actions';
-import { FormControl } from '@angular/forms';
 import { Profile } from '../../interfaces';
-import { SearchFormType } from '../../../shared';
 
 export interface ProfileState {
   profiles: Profile[],
   profileFilters: Record<string, any>,
-  searchForm: SearchFormType,
+  page: number,
+  size: number
 }
 
 export const initialState: ProfileState = {
   profiles: [],
   profileFilters: {},
-  searchForm: {
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    stack: new FormControl(''),
-  }
+  page: 1,
+  size: 10
 };
 
 export const profileFeature = createFeature({
@@ -27,15 +23,23 @@ export const profileFeature = createFeature({
     on(profileActions.profileLoaded, (state, payload) => {
       return {
         ...state,
-        profiles: payload.profiles,
+        profiles: state.profiles.concat(payload.profiles),
       }
     }),
-    on(profileActions.searchForm, (state, payload) => {
-      console.log('state', state);
-      console.log('payload', payload);
+    on(profileActions.filterEvents, (state, payload) => {
       return {
         ...state,
-        searchForm: { firstName: payload.firstName, lastName: payload.lastName, stack: payload.stack },
+        profiles: [],
+        profileFilters: payload.filters,
+        page: 1,
+      }
+    }),
+    on(profileActions.setPage, (state, payload) => {
+      let page = payload.page;
+      if (!page) page = state.page + 1;
+      return {
+        ...state,
+        page
       }
     })
   ),

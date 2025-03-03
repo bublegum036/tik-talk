@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule }
 import { debounceTime, startWith } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { profileActions, SearchFormType, selectSearchForm } from '@tt/data-access/';
+import { profileActions, SearchFormType } from '@tt/data-access/';
 
 @Component({
   selector: 'app-profile-filters',
@@ -15,7 +15,6 @@ import { profileActions, SearchFormType, selectSearchForm } from '@tt/data-acces
 export class ProfileFiltersComponent {
   fb = inject(FormBuilder);
   store = inject(Store);
-  saveSearchForm = this.store.select(selectSearchForm);
 
   searchForm: FormGroup<SearchFormType> = this.fb.group<SearchFormType>({
     firstName: new FormControl(''),
@@ -24,10 +23,6 @@ export class ProfileFiltersComponent {
   });
 
   constructor() {
-    this.saveSearchForm.subscribe(storeForm => {
-      console.log(storeForm);
-    })
-
     this.searchForm.valueChanges
       .pipe(
         startWith({}),
