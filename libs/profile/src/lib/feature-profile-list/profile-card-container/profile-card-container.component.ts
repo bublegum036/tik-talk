@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { WaIntersectionObservee, WaIntersectionObserverDirective } from '@ng-web-apis/intersection-observer';
 import { Store } from '@ngrx/store';
 import { profileActions, selectFilteredProfiles } from '@tt/data-access/';
-import { ProfileCardComponent } from '../../ui';
+import { InfiniteScrollTriggerComponent, ProfileCardComponent } from '../../ui';
 
 @Component({
   selector: 'tt-profile-card-container',
@@ -10,7 +10,8 @@ import { ProfileCardComponent } from '../../ui';
   imports: [
     WaIntersectionObserverDirective,
     WaIntersectionObservee,
-    ProfileCardComponent
+    ProfileCardComponent,
+    InfiniteScrollTriggerComponent
   ],
   templateUrl: './profile-card-container.component.html',
   styleUrl: './profile-card-container.component.scss'
