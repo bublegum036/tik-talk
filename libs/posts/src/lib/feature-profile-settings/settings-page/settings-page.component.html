@@ -1,4 +1,8 @@
-<app-profile-header></app-profile-header>
+@if (me(); as me) {
+<app-profile-header
+  [profile]="me"
+></app-profile-header>
+}
 
 <form class="profile-form__wrapper" [formGroup]="form">
   <div class="profile-form">
@@ -33,10 +37,8 @@
       <app-avatar-upload></app-avatar-upload>
     </label>
 
-    <label class="tt-form-label">
-      <span class="tt-form-label__text">Stack</span>
-      <input class="tt-form-input" formControlName="stack" />
-    </label>
+
+    <tt-stack-input formControlName="stack"></tt-stack-input>
   </div>
   <div>
     <div>

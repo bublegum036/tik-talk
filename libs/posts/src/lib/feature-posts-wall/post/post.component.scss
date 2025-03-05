@@ -44,4 +44,8 @@
   grid-gap: 8px;
   padding: 8px 0;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
