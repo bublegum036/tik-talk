@@ -2,8 +2,7 @@
   display: grid;
   grid-gap: 8px;
   padding-top: 20px;
-  overflow-y: scroll;
-  position: relative;
+  overflow: scroll;
 
   &::-webkit-scrollbar {
     width: 0;

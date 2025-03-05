@@ -1,28 +1,1 @@
-<!--<div class="profile-card__wrapper" waIntersectionObserver waIntersectionThreshold="0.5">-->
-<!--  @for (profile of profiles(); track profile.id; let last = $last) {-->
-<!--    <app-profile-card-->
-<!--      [profile]="profile"-->
-<!--      (waIntersectionObservee)="last ?  onIntersection($event) : null"-->
-<!--    ></app-profile-card>-->
-<!--  }-->
-<!--</div>-->
-
-
-<!--//Скролл через defer-->
-
-<div class="profile-card__wrapper">
-  @for (profile of profiles(); track profile.id; let last = $last) {
-    <app-profile-card
-      [profile]="profile"
-    ></app-profile-card>
-    @if (last) {
-      @defer (on viewport) {
-        <tt-infinite-scroll-trigger
-          (loaded)="timeToFetch()"
-        ></tt-infinite-scroll-trigger>
-      } @placeholder {
-        <div></div>
-      }
-    }
-  }
-</div>
+<!--<div class="profile-card__wrapper" waIntersectionObserver waIntersectionThreshold="0.5">--><!--  @for (profile of profiles(); track profile.id; let last = $last) {--><!--    <app-profile-card--><!--      [profile]="profile"--><!--      (waIntersectionObservee)="last ?  onIntersection($event) : null"--><!--    ></app-profile-card>--><!--  }--><!--</div>--><!--//Скролл через defer--><div class="profile-card__wrapper">  @for (profile of profiles(); track profile.id; let last = $last) {    <app-profile-card      [profile]="profile"    ></app-profile-card>    @if (last) {      @defer (on viewport) {        <tt-infinite-scroll-trigger          (loaded)="timeToFetch()"        ></tt-infinite-scroll-trigger>      } @placeholder {        <div></div>      }    }  }</div>
