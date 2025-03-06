@@ -76,7 +76,6 @@ export class AddressInputComponent implements ControlValueAccessor {
       emitEvent: false,
     });
     this.onChange(city)
-    debounceTime(2000);
   }
 
   onModelChange(city: string): void {
