@@ -7,3 +7,4 @@ export * from './posts';
 export * from './directives'
 export * from './sidebar'
 export * from './auth'
+export * from './dadata'

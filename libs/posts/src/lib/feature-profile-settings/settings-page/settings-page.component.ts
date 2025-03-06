@@ -1,19 +1,28 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, effect, inject, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  effect,
+  inject,
+  ViewChild
+} from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { GlobalStoreService, ProfileService, StackInputComponent } from '@tt/data-access/';
+import {  GlobalStoreService, ProfileService } from '@tt/data-access/';
 import { firstValueFrom } from 'rxjs';
-import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
+import { AddressInputComponent, AvatarUploadComponent, ProfileHeaderComponent, StackInputComponent } from '../../ui';
 
 @Component({
   selector: 'app-settings-page',
   standalone: true,
-  imports: [ProfileHeaderComponent, ReactiveFormsModule, AvatarUploadComponent, StackInputComponent],
+  imports: [ProfileHeaderComponent, ReactiveFormsModule, AvatarUploadComponent, StackInputComponent, AddressInputComponent],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsPageComponent implements AfterViewInit{
   fb = inject(FormBuilder);
+  cdr = inject(ChangeDetectorRef)
   profileService = inject(ProfileService);
   me = inject(GlobalStoreService).me;
 
@@ -26,6 +35,7 @@ export class SettingsPageComponent implements AfterViewInit{
     username: [{ value: '', disabled: true }, Validators.required],
     description: [''],
     stack: [''],
+    city: [''],
   });
 
   constructor() {
@@ -57,7 +67,7 @@ export class SettingsPageComponent implements AfterViewInit{
     firstValueFrom(
     // @ts-ignore
       this.profileService.patchProfile({
-        ...this.form.value!,
+        ...this.form.value!
       })
     );
   }

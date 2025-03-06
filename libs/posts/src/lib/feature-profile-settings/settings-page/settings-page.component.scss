@@ -13,6 +13,11 @@
   border: 1px solid var(--light-color);
   background: var(--dark-color);
   height: calc(100dvh - 24px * 4);
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
 
 .profile-form {

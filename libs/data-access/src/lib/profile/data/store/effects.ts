@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { ProfileService } from '../services';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { profileActions } from './actions';
-import { map, switchMap, tap, withLatestFrom } from 'rxjs';
+import { map, switchMap, withLatestFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectProfileFilters, selectProfilePageable } from './selectors';
 
@@ -22,7 +22,7 @@ export class ProfileEffects {
         profileActions.setPage
       ),
       withLatestFrom(
-        this.store.select(selectProfileFilters).pipe(),
+        this.store.select(selectProfileFilters),
         this.store.select(selectProfilePageable)
       ),
       switchMap(([_, filters, pageable]) => {

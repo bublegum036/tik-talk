@@ -1,12 +1,13 @@
-import { Component, forwardRef, HostBinding, HostListener, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, HostBinding, HostListener, signal } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SvgIconComponent } from '../svg-icon/svg-icon.component';
+import { SvgIconComponent } from '../../../../../data-access/src/lib/components/svg-icon/svg-icon.component';
 import { BehaviorSubject } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'tt-stack-input',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     SvgIconComponent,
     FormsModule,
@@ -79,5 +80,4 @@ export class StackInputComponent implements ControlValueAccessor {
     this.value$.next(tags);
     this.onChange(this.value$.value);
   }
-
 }

@@ -39,6 +39,19 @@
 
 
     <tt-stack-input formControlName="stack"></tt-stack-input>
+
+    @if (me(); as me) {
+    <tt-address-input
+      [profile]="me"
+      formControlName="city"
+    ></tt-address-input>
+    }
+
+<!--    <label class="tt-form-label">-->
+<!--      <span class="tt-form-label__text">Telegram username</span>-->
+<!--      <input class="tt-form-input" formControlName="city" />-->
+<!--    </label>-->
+
   </div>
   <div>
     <div>
