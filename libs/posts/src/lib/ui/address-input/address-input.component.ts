@@ -1,5 +1,5 @@
 import {
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component, forwardRef,
   inject,
   input, signal
@@ -31,6 +31,7 @@ export class AddressInputComponent implements ControlValueAccessor {
   profile = input.required<Profile>()
   innerSearchControl = new FormControl();
   #dadataService = inject(DadataService);
+  cdr = inject(ChangeDetectorRef)
 
   isDropDownOpened = signal<boolean>(true)
 
@@ -76,6 +77,7 @@ export class AddressInputComponent implements ControlValueAccessor {
       emitEvent: false,
     });
     this.onChange(city)
+    this.cdr.detectChanges()
   }
 
   onModelChange(city: string): void {

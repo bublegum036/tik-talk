@@ -1,7 +1,5 @@
 <tt-input
   [formControl]="innerSearchControl"
-  [ngModel]="profile().city"
-  (ngModelChange)="onModelChange($event)"
   [placeholder]="'Введите город'"
 >
   Город
@@ -21,3 +19,5 @@
     </div>
   }
 }
+<!--  [ngModel]="profile().city"-->
+<!--  (ngModelChange)="onModelChange($event)"-->
